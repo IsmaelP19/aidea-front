@@ -7,5 +7,5 @@ export class User {
     age!: number;
     phone!: string;
     occupation!: string;
-    is_staff!: boolean;
+    is_superuser!: boolean;
 }

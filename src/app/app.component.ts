@@ -37,7 +37,7 @@ export class AppComponent implements OnInit {
       age: new FormControl('', [ageValidator()]),
       phone: new FormControl('', [phoneNumberValidator()]),
       occupation: new FormControl('', [maxLength(50)]),
-      is_staff: new FormControl(false)
+      is_superuser: new FormControl(false)
     });
 
   }
@@ -57,7 +57,17 @@ export class AppComponent implements OnInit {
     this.userService.createUser(this.form.value).subscribe({
       next: user => {
         this.dialogService.openSnackBar('User created successfully', { duration: 2000 }).afterDismissed().subscribe(() => {
-          this.form.reset();
+          this.form.reset({
+            username: '',
+            email: '',
+            password: '',
+            first_name: '',
+            last_name: '',
+            age: '',
+            phone: '',
+            occupation: '',
+            is_superuser: false
+          });
         });
       },
       error: error => {
